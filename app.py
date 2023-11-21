@@ -44,32 +44,65 @@ def addTarefas():
     return jsonify(tarefas)
 
 # Define a rota para deletar uma tarefa
-@app.route("/delete/<int:id>", methods=['DELETE'])
-def deleteTarefa(id):
+@app.route("/delete", methods=['DELETE'])
+def deleteTarefa():
+    # Obtém o ID da tarefa a ser deletada do corpo da requisição
+    data = request.json
+    id = data.get('id')
+
+    # Verifica se o ID foi fornecido
+    if id is None:
+        return jsonify({"error": "ID da tarefa não fornecido"}), 400
+
+    # Lê o arquivo Text.csv e converte para um DataFrame
     tarefas = pd.read_csv('Text.csv')
+
+    # Verifica se a tarefa com o ID fornecido existe
     if id not in tarefas['ID'].values:
         return jsonify({"error": "Tarefa não encontrada"}), 404
+
+    # Remove a tarefa com o ID fornecido
     tarefas = tarefas.drop(tarefas[tarefas['ID'] == id].index)
-    
+
     # Reajusta os IDs após a exclusão
     tarefas['ID'] = range(1, len(tarefas) + 1)
-    
-    tarefas.to_csv('Text.csv', index=False)
-    return jsonify(tarefas.to_dict('records'))
-    
 
-@app.route("/update/<int:id>", methods=["PUT"])
-def update_task(id):
-    item = request.json
+    # Salva as alterações no arquivo Text.csv
+    tarefas.to_csv('Text.csv', index=False)
+
+    # Retorna as tarefas atualizadas em formato JSON
+    return jsonify(tarefas.to_dict('records'))
+
+# Define a rota para atualizar uma tarefa
+@app.route("/update", methods=["PUT"])
+def update_task():
+    # Obtém o ID da tarefa e os dados atualizados do corpo da requisição
+    data = request.json
+    id = data.get('id')
+    nova_tarefa = data.get('nova_tarefa')
+
+    # Verifica se o ID e a nova tarefa foram fornecidos
+    if id is None or nova_tarefa is None:
+        return jsonify({"error": "ID da tarefa e/ou nova tarefa não fornecidos"}), 400
+
+    # Lê o arquivo Text.csv e converte para um DataFrame
     tarefas = pd.read_csv('Text.csv')
+
+    # Verifica se a tarefa com o ID fornecido existe
     if id not in tarefas['ID'].values:
         return jsonify({"error": "Tarefa não encontrada"}), 404
-    tarefas.loc[tarefas['ID'] == id, 'TAREFA'] = item['Tarefa']
+
+    # Atualiza a tarefa com o ID fornecido
+    tarefas.loc[tarefas['ID'] == id, 'TAREFA'] = nova_tarefa
+
+    # Salva as alterações no arquivo Text.csv
     tarefas.to_csv('Text.csv', index=False)
+
+    # Retorna as tarefas atualizadas em formato JSON
     return jsonify(tarefas.to_dict('records'))
+
 
 
 # Inicia a aplicação Flask
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
-
