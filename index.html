@@ -11,20 +11,17 @@
 </head>
 
 <body>
-  <nav class="navbar" style="background-color: gold;">
-    <div class="container-fluid">
-
-      <div>
-        <a class="navbar-brand" style="color: black" style="padding-left: 20px;">Lista Tarefas</a>
-      </div>
-      <div>
-        <button type="button" style="background-color: black;" style="color: white" class="btn btn-primary"
-          data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" class="border">Adicionar
-          +</button>
-      </div>
-
+  <nav class="navbar" style="background-color: #3366ff;">
+    <div class="container">
+      <a class="navbar-brand" style="color: #ffffff" style="padding-left: 20px;">
+        <span class="material-symbols-outlined" style="color: #ffffff">
+          real_estate_agent
+        </span>
+        Minhas Tarefas</a>
+      <button type="button" class="btn btn-primary but border" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Adicionar +</button>
     </div>
   </nav>
+
   <main class=" container mt-5 bg-white p-md-5 p-3 rounded-3 shadow lista-funcionarios">
     <h2 class="mb-5">Minhas Tarefas</h2>
     <table class="table table-hover">
@@ -51,14 +48,14 @@
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Tarefa:</label>
-              <input type="text" class="form-control" id="recipient-name">
+              <label for="recipient-name" class="col-form-label" >Tarefa:</label>
+              <input type="text" class="form-control" id="tarefa">
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Descartar</button>
-          <button type="button" class="btn btn-primary">Adicionar</button>
+          <button type="button" class="btn btn-primary" id="add-tarefa">Adicionar</button>
         </div>
       </div>
     </div>
@@ -69,7 +66,7 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="/script.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
