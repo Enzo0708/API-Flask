@@ -3,25 +3,37 @@ html::before{
     position: absolute;
     width: 100%;
     height: 200px;
-    background-color:gold;
+    background-color: #3366ff;
     z-index: -1;
 }
 
 .navbar{
     height: 80px;
     align-content: first baseline;
-    padding-left: 30px;
-    padding-right: 30px;
 }
 
-.custom-icon {
+.icon{
     color: red; 
 }
 
-.custom-icon-2 {
+.icon-2{
     color: green;
+    margin-right: 25px;
+    margin-left: 10px;
 }
 
-.btn{
+.but{
+    background-color: #3333ff;
     border: rgb(255, 255, 255);
+    margin-top: 10px;
+}
+
+.but:hover{
+    background-color: rgb(48, 48, 48);
+}
+
+html::after{
+    background-color: linear-gradient(180deg, #B31F7A 0%, #FB0141 100%);
+    content: "";
+
 }
