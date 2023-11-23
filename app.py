@@ -10,7 +10,7 @@ CORS(app)
 # Tenta criar o arquivo Text.csv caso ele não exista e escreve o cabeçalho
 try:
     open('Text.csv', 'x')
-    with open("Text.csv", "w") as arquivo:
+    with open("Text.csv", "a", encoding='utf-8') as arquivo:
          arquivo.write("ID,TAREFA\n") 
 except:
     pass
@@ -35,7 +35,7 @@ def addTarefas():
     # Define o ID da nova tarefa
     id = len(tarefas) + 1
     # Adiciona a nova tarefa ao arquivo Text.csv
-    with open("Text.csv", "a") as arquivo:
+    with open("Text.csv", "a", encoding='utf-8') as arquivo:
          arquivo.write(f"{id},{item['Tarefa']}\n")    
     # Lê o arquivo Text.csv e converte para um dicionário
     tarefas = pd.read_csv('Text.csv')
