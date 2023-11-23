@@ -11,14 +11,15 @@
 </head>
 
 <body>
-  <nav class="navbar" style="background-color: #3366ff;">
+  <nav class="navbar">
     <div class="container">
       <a class="navbar-brand" style="color: #ffffff" style="padding-left: 20px;">
         <span class="material-symbols-outlined" style="color: #ffffff">
           real_estate_agent
         </span>
         Minhas Tarefas</a>
-      <button type="button" class="btn btn-primary but border" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Adicionar +</button>
+      <button type="button" class="btn btn-primary border" id="but" data-bs-toggle="modal" 
+      data-bs-target="#exampleModal" data-bs-whatever="@mdo">Adicionar +</button>
     </div>
   </nav>
 
@@ -37,6 +38,7 @@
     </table>
 
   </main>
+
   <!-- MODAL -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -48,8 +50,6 @@
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Tarefa:</label>
-              <input type="text" class="form-control" id="recipient-name">
               <label for="recipient-name" class="col-form-label" >Tarefa:</label>
               <input type="text" class="form-control" id="tarefa">
             </div>
@@ -57,7 +57,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Descartar</button>
-          <button type="button" class="btn btn-primary">Adicionar</button>
           <button type="button" class="btn btn-primary" id="add-tarefa">Adicionar</button>
         </div>
       </div>
