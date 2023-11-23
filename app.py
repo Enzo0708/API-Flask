@@ -74,16 +74,10 @@ def deleteTarefa():
     return jsonify(tarefas.to_dict('records'))
 
 # Define a rota para atualizar uma tarefa
-@app.route("/update", methods=["PUT"])
-def update_task():
-    # Obtém o ID da tarefa e os dados atualizados do corpo da requisição
-    data = request.json
-    id = data.get('id')
-    nova_tarefa = data.get('nova_tarefa')
-
-    # Verifica se o ID e a nova tarefa foram fornecidos
-    if id is None or nova_tarefa is None:
-        return jsonify({"error": "ID da tarefa e/ou nova tarefa não fornecidos"}), 400
+@app.route("/update/<int:id>", methods=["PUT"])
+def updateTarefa(id):
+    # Obtém os dados atualizados do corpo da requisição
+    nova_tarefa = request.json.get('TAREFA')
 
     # Lê o arquivo Text.csv e converte para um DataFrame
     tarefas = pd.read_csv('Text.csv')
@@ -100,8 +94,6 @@ def update_task():
 
     # Retorna as tarefas atualizadas em formato JSON
     return jsonify(tarefas.to_dict('records'))
-
-
 
 # Inicia a aplicação Flask
 if __name__ == '__main__':
